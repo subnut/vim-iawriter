@@ -53,6 +53,11 @@ fun! vim_iawriter#post_enter()
 	if g:iawriter_center_cursor
 		set scrolloff=9999
 	endif
+	augroup iawriter_silent_cmdline
+		au!
+		autocmd CmdlineLeave : echo ''
+	augroup end
+	mode
 endfun!
 
 fun! vim_iawriter#leave()
@@ -61,6 +66,9 @@ fun! vim_iawriter#leave()
 	execute('colo ' . s:saved_colorscheme)
 	AirlineRefresh
 	execute('set scrolloff=' . s:saved_scrolloff)
+	augroup iawriter_silent_cmdline
+		au!
+	augroup end
 endfun!
 
 fun! vim_iawriter#toggle()
