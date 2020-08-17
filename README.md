@@ -40,4 +40,6 @@ let g:iawriter_center_cursor = 1
 
 
 ## Extras
+Screenshots: [here](https://github.com/subnut/vim-iawriter/issues/2)
+
 For the _preview_ feature, I personally use [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
