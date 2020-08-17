@@ -26,7 +26,7 @@ fun! vim_iawriter#check_configs()
 		let g:iawriter_change_cursorline = 1
 	endif
 	if !exists('g:iawriter_center_cursor')
-		let g:iawriter_center_cursor = 1
+		let g:iawriter_center_cursor = 0
 	endif
 endfun!
 
@@ -65,7 +65,6 @@ endfun!
 fun! vim_iawriter#leave()
 	Limelight!
 	execute('colo ' . s:saved_colorscheme)
-	AirlineRefresh
 	execute('set scrolloff=' . s:saved_scrolloff)
 	augroup iawriter_silent_cmdline
 		au!
