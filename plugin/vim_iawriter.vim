@@ -33,6 +33,7 @@ fun! vim_iawriter#leave()
 	execute('colo ' . s:saved_colorscheme)
 	Limelight!
 	AirlineToggle
+	AirlineRefresh
 endfun!
 
 fun! vim_iawriter#toggle()
