@@ -8,6 +8,7 @@ fun! vim_iawriter#check_configs()
 	if exists('g:colors_name')
 		let s:saved_colorscheme = g:colors_name
 	endif
+	let s:saved_scrolloff = &scrolloff
 	if !exists('g:goyo_width')
 		let g:goyo_width = '70%'
 	endif
@@ -23,6 +24,9 @@ fun! vim_iawriter#check_configs()
 	endif
 	if !exists('g:iawriter_change_cursorline')
 		let g:iawriter_change_cursorline = 1
+	endif
+	if !exists('g:iawriter_center_cursor')
+		let g:iawriter_center_cursor = 1
 	endif
 endfun!
 
@@ -46,6 +50,9 @@ fun! vim_iawriter#post_enter()
 	if g:iawriter_change_underline
 		hi CursorLine gui=NONE
 	endif
+	if g:iawriter_center_cursor
+		set scrolloff=9999
+	endif
 endfun!
 
 fun! vim_iawriter#leave()
@@ -53,6 +60,7 @@ fun! vim_iawriter#leave()
 	AirlineToggle
 	execute('colo ' . s:saved_colorscheme)
 	AirlineRefresh
+	execute('set scrolloff=' . s:saved_scrolloff)
 endfun!
 
 fun! vim_iawriter#toggle()
