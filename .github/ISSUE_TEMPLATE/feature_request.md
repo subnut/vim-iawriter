@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-## Please understand that I personally may not be able to implement it. But Pull Requests are always welcome.
+# Please understand that I personally may not be able to implement it, but Pull Requests are always welcome.
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
