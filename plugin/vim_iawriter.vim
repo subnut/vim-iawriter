@@ -9,7 +9,7 @@ fun! vim_iawriter#check_configs()
 		let s:saved_colorscheme = g:colors_name
 	endif
 	if !exists('g:goyo_width')
-		let g:goyo_width = '65%'
+		let g:goyo_width = '70%'
 	endif
 	if !exists('g:limelight_paragraph_span')
 		let g:limelight_paragraph_span = 1
@@ -27,13 +27,16 @@ fun! vim_iawriter#check_configs()
 endfun!
 
 fun! vim_iawriter#pre_enter()
-	call vim_iawriter#check_configs()
+	if exists('#goyo')
+		Goyo!
+	endif
 	au User GoyoEnter nested ++once call vim_iawriter#post_enter()
+	call vim_iawriter#check_configs()
+	colo pencil
 	AirlineToggle
 endfun!
 
 fun! vim_iawriter#post_enter()
-	colo pencil
 	let g:limelight_paragraph_span = 1
 	Limelight
 	au User GoyoLeave nested ++once call vim_iawriter#leave()
@@ -46,13 +49,17 @@ fun! vim_iawriter#post_enter()
 endfun!
 
 fun! vim_iawriter#leave()
-	execute('colo ' . s:saved_colorscheme)
 	Limelight!
 	AirlineToggle
+	execute('colo ' . s:saved_colorscheme)
 	AirlineRefresh
 endfun!
 
 fun! vim_iawriter#toggle()
-	call vim_iawriter#pre_enter()
-	Goyo
+	if exists('#goyo')
+		Goyo!
+	else
+		call vim_iawriter#pre_enter()
+		Goyo
+	endif
 endfun!
