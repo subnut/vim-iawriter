@@ -2,7 +2,7 @@ if exists('g:loaded_iawriter_plugin')
 	finish
 endif
 let g:loaded_iawriter_plugin = 1
-
+let b:vim_iawriter_enabled = 0
 fun! vim_iawriter#check_configs()
 	let s:saved_colorscheme = "default"
 	if exists('g:colors_name')
@@ -13,7 +13,7 @@ fun! vim_iawriter#check_configs()
 		let g:goyo_width = '70%'
 	endif
 	if !exists('g:limelight_paragraph_span')
-		let g:limelight_paragraph_span = 1
+		let g:limelight_paragraph_span = 0
 	endif
 	if !exists('g:limelight_default_coefficient')
 		let g:limelight_default_coefficient = 0.7
@@ -35,15 +35,15 @@ fun! vim_iawriter#pre_enter()
 		Goyo!
 	endif
 	au User GoyoEnter nested ++once call vim_iawriter#post_enter()
+	au User GoyoEnter nested ++once call <SID>iawriter_enter()
 	call vim_iawriter#check_configs()
 	colo pencil
-	AirlineToggle
 endfun!
 
 fun! vim_iawriter#post_enter()
-	let g:limelight_paragraph_span = 1
 	Limelight
 	au User GoyoLeave nested ++once call vim_iawriter#leave()
+	au User GoyoLeave nested ++once call <SID>iawriter_leave()
 	if g:iawriter_change_cursorline
 		set nocursorline
 	endif
@@ -57,12 +57,13 @@ fun! vim_iawriter#post_enter()
 		au!
 		autocmd CmdlineLeave : echo ''
 	augroup end
+	let b:vim_iawriter_enabled = 1
 	mode
+	redraw
 endfun!
 
 fun! vim_iawriter#leave()
 	Limelight!
-	AirlineToggle
 	execute('colo ' . s:saved_colorscheme)
 	AirlineRefresh
 	execute('set scrolloff=' . s:saved_scrolloff)
@@ -72,10 +73,31 @@ fun! vim_iawriter#leave()
 endfun!
 
 fun! vim_iawriter#toggle()
-	if exists('#goyo')
+	if exists('#goyo') && b:vim_iawriter_enabled
 		Goyo!
 	else
 		call vim_iawriter#pre_enter()
 		Goyo
 	endif
 endfun!
+
+" Close vim when only window open is iAwriter
+" Taken from https://github.com/junegunn/goyo.vim/wiki/Customization#ensure-q-to-quit-even-when-goyo-is-active
+function! s:iawriter_enter()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:iawriter_leave()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
