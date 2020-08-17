@@ -2,7 +2,7 @@ if exists('g:loaded_iawriter_plugin')
 	finish
 endif
 let g:loaded_iawriter_plugin = 1
-let b:vim_iawriter_enabled = 0
+let s:vim_iawriter_enabled = 0
 fun! vim_iawriter#check_configs()
 	let s:saved_colorscheme = "default"
 	if exists('g:colors_name')
@@ -57,7 +57,7 @@ fun! vim_iawriter#post_enter()
 		au!
 		autocmd CmdlineLeave : echo ''
 	augroup end
-	let b:vim_iawriter_enabled = 1
+	let s:vim_iawriter_enabled = 1
 	mode
 	redraw
 endfun!
@@ -72,7 +72,7 @@ fun! vim_iawriter#leave()
 endfun!
 
 fun! vim_iawriter#toggle()
-	if exists('#goyo') && b:vim_iawriter_enabled
+	if exists('#goyo') && s:vim_iawriter_enabled
 		Goyo!
 	else
 		call vim_iawriter#pre_enter()
