@@ -8,6 +8,11 @@ This is a minimal plugin that aims to provide an experience similar to iAwriter'
 Install the plugins mentioned above, and then install this plugin any way you like :smile: <br/>
 In case you have never installed plugins before, I recommend you to check out [vim-plug](https://github.com/junegunn/vim-plug)
 
+## Usage
+`:Iawriter`
+
+Or, you could also map something to `call vim_iawriter#toggle()`
+
 ## Configuration
 `vim-iawriter` does not touch the configurations defined individually for the abovementioned three plugins. If they are defined, vim-iawriter shall respect them.
 In addition to that, vim-iawriter provides a few configuration options -

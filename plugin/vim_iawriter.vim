@@ -100,3 +100,4 @@ function! s:iawriter_leave()
   endif
 endfunction
 
+command! Iawriter call vim_iawriter#toggle()
