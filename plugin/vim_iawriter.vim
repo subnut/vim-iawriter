@@ -14,7 +14,7 @@ fun! s:check_configs()
 	if !exists('g:limelight_paragraph_span')
 		let g:limelight_paragraph_span = 1
 	endif
-endfun!	
+endfun!
 
 fun! s:iawriter_pre_enter()
 	check_configs()
@@ -33,9 +33,9 @@ fun! s:iawriter_leave()
 	execute('colo ' . s:saved_colorscheme)
 	Limelight!
 	AirlineToggle
-endfun!	
+endfun!
 
 fun! vim_iawriter#toggle()
-	s:iawriter_pre_enter()
+	<SID>iawriter_pre_enter()
 	Goyo
 endfun!
