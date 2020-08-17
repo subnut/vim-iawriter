@@ -3,7 +3,7 @@ if exists('g:loaded_iawriter_plugin')
 endif
 let g:loaded_iawriter_plugin = 1
 
-fun! s:check_configs()
+fun! vim_iawriter#check_configs()
 	let s:saved_colorscheme = "default"
 	if exists('g:colors_name')
 		let s:saved_colorscheme = g:colors_name
@@ -16,26 +16,26 @@ fun! s:check_configs()
 	endif
 endfun!
 
-fun! s:iawriter_pre_enter()
-	check_configs()
-	au User GoyoEnter nested ++once call <SID>iawriter_post_enter()
+fun! vim_iawriter#pre_enter()
+	call vim_iawriter#check_configs()
+	au User GoyoEnter nested ++once call vim_iawriter#post_enter()
 	AirlineToggle
 endfun!
 
-fun! s:iawriter_post_enter()
+fun! vim_iawriter#post_enter()
 	colo pencil
 	let g:limelight_paragraph_span = 1
 	Limelight
-	au User GoyoLeave nested ++once call <SID>iawriter_leave()
+	au User GoyoLeave nested ++once call vim_iawriter#leave()
 endfun!
 
-fun! s:iawriter_leave()
+fun! vim_iawriter#leave()
 	execute('colo ' . s:saved_colorscheme)
 	Limelight!
 	AirlineToggle
 endfun!
 
 fun! vim_iawriter#toggle()
-	<SID>iawriter_pre_enter()
+	call vim_iawriter#pre_enter()
 	Goyo
 endfun!
