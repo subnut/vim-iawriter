@@ -4,7 +4,7 @@ endif
 let g:loaded_iawriter_plugin = 1
 let s:vim_iawriter_enabled = 0
 fun! vim_iawriter#check_configs()
-	let s:saved_colorscheme = "default"
+	let s:saved_colorscheme = 'default'
 	if exists('g:colors_name')
 		let s:saved_colorscheme = g:colors_name
 	endif
@@ -28,22 +28,28 @@ fun! vim_iawriter#check_configs()
 	if !exists('g:iawriter_center_cursor')
 		let g:iawriter_center_cursor = 0
 	endif
-endfun!
+endfun
 
 fun! vim_iawriter#pre_enter()
 	if exists('#goyo')
 		Goyo!
 	endif
-	au User GoyoEnter nested ++once call vim_iawriter#post_enter()
-	au User GoyoEnter nested ++once call <SID>iawriter_enter()
+	augroup iawriter_enter
+		au!
+		au User GoyoEnter nested ++once call vim_iawriter#post_enter()
+		au User GoyoEnter nested ++once call <SID>iawriter_enter()
+	augroup end
 	call vim_iawriter#check_configs()
 	colo pencil
-endfun!
+endfun
 
 fun! vim_iawriter#post_enter()
 	Limelight
-	au User GoyoLeave nested ++once call vim_iawriter#leave()
-	au User GoyoLeave nested ++once call <SID>iawriter_leave()
+	augroup iawriter_leave
+		au!
+		au User GoyoLeave nested ++once call vim_iawriter#leave()
+		au User GoyoLeave nested ++once call <SID>iawriter_leave()
+	augroup end
 	if g:iawriter_change_cursorline
 		set nocursorline
 	endif
@@ -60,7 +66,7 @@ fun! vim_iawriter#post_enter()
 	let s:vim_iawriter_enabled = 1
 	mode
 	redraw
-endfun!
+endfun
 
 fun! vim_iawriter#leave()
 	Limelight!
@@ -69,7 +75,7 @@ fun! vim_iawriter#leave()
 	augroup iawriter_silent_cmdline
 		au!
 	augroup end
-endfun!
+endfun
 
 fun! vim_iawriter#toggle()
 	if exists('#goyo') && s:vim_iawriter_enabled
@@ -78,14 +84,17 @@ fun! vim_iawriter#toggle()
 		call vim_iawriter#pre_enter()
 		Goyo
 	endif
-endfun!
+endfun
 
 " Close vim when only window open is iAwriter
 " Taken from https://github.com/junegunn/goyo.vim/wiki/Customization#ensure-q-to-quit-even-when-goyo-is-active
 function! s:iawriter_enter()
   let b:quitting = 0
   let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
+  augroup iawriter_only_window
+	  au!
+	  autocmd QuitPre <buffer> let b:quitting = 1
+  augroup end
   cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
 
