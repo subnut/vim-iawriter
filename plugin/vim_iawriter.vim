@@ -34,6 +34,14 @@ fun! vim_iawriter#pre_enter()
 	if exists('#goyo')
 		Goyo!
 	endif
+	let s:airline_exists = 0
+	if exists('#airline') && &statusline =~ 'airline'
+		" For some reason, airline needs THREE toggles to turn completely off
+		AirlineToggle
+		AirlineToggle
+		AirlineToggle
+		let s:airline_exists = 1
+	endif
 	augroup iawriter_enter
 		au!
 		au User GoyoEnter nested ++once call vim_iawriter#post_enter()
@@ -75,6 +83,10 @@ fun! vim_iawriter#leave()
 	augroup iawriter_silent_cmdline
 		au!
 	augroup end
+	if s:airline_exists
+		AirlineToggle
+		AirlineRefresh
+	endif
 endfun
 
 fun! vim_iawriter#toggle()
@@ -89,24 +101,24 @@ endfun
 " Close vim when only window open is iAwriter
 " Taken from https://github.com/junegunn/goyo.vim/wiki/Customization#ensure-q-to-quit-even-when-goyo-is-active
 function! s:iawriter_enter()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  augroup iawriter_only_window
-	  au!
-	  autocmd QuitPre <buffer> let b:quitting = 1
-  augroup end
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+	let b:quitting = 0
+	let b:quitting_bang = 0
+	augroup iawriter_only_window
+		au!
+		autocmd QuitPre <buffer> let b:quitting = 1
+	augroup end
+	cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
 
 function! s:iawriter_leave()
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
+	" Quit Vim if this is the only remaining buffer
+	if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+		if b:quitting_bang
+			qa!
+		else
+			qa
+		endif
+	endif
 endfunction
 
 command! Iawriter call vim_iawriter#toggle()
