@@ -48,8 +48,25 @@ fun! vim_iawriter#check_configs()
 
 	" Default config
 	" -----------------------------
+	if !exists('g:iawriter_force_defaults')
+		let g:iawriter_force_defaults = 0
+	endif
+	if g:iawriter_force_defaults
+		let g:goyo_width = '70%'
+		let g:goyo_height = '85%'
+		let g:limelight_paragraph_span = 0
+		let g:limelight_default_coefficient = 0.7
+		let g:iawriter_change_underline = 1
+		let g:iawriter_change_cursorline = 1
+		let g:iawriter_center_cursor = 0
+		let g:iawriter_show_signcolumn = 0
+		return
+	endif
 	if !exists('g:goyo_width')
 		let g:goyo_width = '70%'
+	endif
+	if !exists('g:goyo_height')
+		let g:goyo_height = '85%'
 	endif
 	if !exists('g:limelight_paragraph_span')
 		let g:limelight_paragraph_span = 0
