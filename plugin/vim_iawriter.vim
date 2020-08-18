@@ -90,6 +90,7 @@ fun! vim_iawriter#check_configs()
 endfun
 
 fun! vim_iawriter#pre_enter()
+	doautocmd <nomodeline> User IawriterPrePreEnter
 	if exists('#goyo')
 		Goyo!
 	endif
@@ -105,9 +106,11 @@ fun! vim_iawriter#pre_enter()
 	augroup end
 	call vim_iawriter#check_configs()
 	colo pencil
+	doautocmd <nomodeline> User IawriterPostPreEnter
 endfun
 
 fun! vim_iawriter#post_enter()
+	doautocmd <nomodeline> User IawriterPrePostEnter
 	Limelight
 	augroup iawriter_leave
 		au!
@@ -133,9 +136,11 @@ fun! vim_iawriter#post_enter()
 	let s:vim_iawriter_enabled = 1
 	mode
 	redraw
+	doautocmd <nomodeline> User IawriterPostPostEnter
 endfun
 
 fun! vim_iawriter#leave()
+	doautocmd <nomodeline> User IawriterPreLeave
 	Limelight!
 	execute('colo ' . s:saved_colorscheme)
 	execute('set scrolloff=' . s:saved_scrolloff)
@@ -166,15 +171,18 @@ fun! vim_iawriter#leave()
 	if exists('s:saved_limelight_paragraph_span')
 		let g:limelight_paragraph_span = s:saved_limelight_paragraph_span
 	endif
+	doautocmd <nomodeline> User IawriterPostLeave
 endfun
 
 fun! vim_iawriter#toggle()
+	doautocmd <nomodeline> User IawriterToggleTriggered
 	if exists('#goyo') && s:vim_iawriter_enabled
 		Goyo!
 	else
 		call vim_iawriter#pre_enter()
 		Goyo
 	endif
+	doautocmd <nomodeline> User IawriterToggleFinished
 endfun
 
 " Close vim when only window open is iAwriter

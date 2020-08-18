@@ -76,3 +76,46 @@ let g:iawriter_center_cursor = 1
 Screenshots: [here](https://github.com/subnut/vim-iawriter/issues/2)
 
 For the _preview_ feature, I personally use [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+
+<br/>
+
+## Advanced configuration
+`vim-iawriter` provides plenty of autocommands -
+
+<br/>
+
+| Autocommand | When |
+| ----------- | ---- |
+| `IawriterToggleTriggered` | `vim_iawriter#toggle()` Enter
+| `IawriterToggleFinished` | `vim_iawriter#toggle()` Exit
+| `IawriterPrePreEnter` | `vim_iawriter#pre_enter()` Enter
+| `IawriterPostPreEnter` | `vim_iawriter#pre_enter()` Exit
+| `IawriterPrePostEnter` | `vim_iawriter#post_enter()` Enter
+| `IawriterPostPostEnter` | `vim_iawriter#post_enter()` Exit
+| `IawriterPreLeave` | `vim_iawriter#leave()` Enter
+| `IawriterPostLeave` | `vim_iawriter#leave()` Exit
+
+<br/>
+
+##### `vim_iawriter#toggle()`
+ - Checks if vim-iawriter already running. If yes, closes (by closing Goyo). Else starts.
+##### `vim_iawriter#pre_enter()`
+ - Closes Goyo (not vim-iawriter) if running
+ - Checks if Airline installed & enabled
+ - Sets up autocmds to call `vim_iawriter#post_enter()` on entering Goyo
+ - Loads configs
+ - Changes colorscheme
+ - Starts Goyo
+##### `vim_iawriter#post_enter()`
+ - Runs after Goyo starts
+ - Enables Limelight
+ - Sets up autocmds to call `vim_iawriter#leave()` on closing Goyo
+ - Applies configs
+##### `vim_iawriter#leave()`
+ - Runs when Goyo closes
+ - Restores original configs
+
+<br/>
+
+See `plugin/vim_iawriter.vim` for more information on those functions
+
