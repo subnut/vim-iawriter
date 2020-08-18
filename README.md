@@ -16,31 +16,36 @@ Or, you could also map something to `call vim_iawriter#toggle()`
 ## Configuration
 `vim-iawriter` does not touch the configurations defined individually for the abovementioned three plugins. If they are defined, vim-iawriter shall respect them
 In addition, vim-iawriter provides a few configuration options -
-* `g:iawriter_change_cursorline`
-* `g:iawriter_change_underline`
-* `g:iawriter_show_signcolumn`
-* `g:iawriter_center_cursor`
+* [`iawriter_change_cursorline`][1]
+* [`iawriter_change_underline`][2]
+* [`iawriter_show_signcolumn`][3]
+* [`iawriter_center_cursor`][4] (experimental)
 
-#### g:iawriter_change_cursorline
+  [1]: #iawriter_change_cursorline
+  [2]: #iawriter_change_underline
+  [3]: #iawriter_show_signcolumn
+  [4]: #iawriter_center_cursor
+
+#### iawriter_change_cursorline
 `vim-iawriter` turns off cursorline (if enabled) by default. To keep it on -
 ```vim
 let g:iawriter_change_cursorline = 0
 ```
 
-#### g:iawriter_change_underline
+#### iawriter_change_underline
 `vim-iawriter` turns off the underlining of the cursorline (if enabled) by default. To keep it on -
 ```vim
 let g:iawriter_change_underline = 0
 ```
 
-#### g:iawriter_show_signcolumn
+#### iawriter_show_signcolumn
 `vim-iawriter` hides the signcolumn by default. To keep it -
 ```vim
 let g:iawriter_show_signcolumn = 1
 ```
 
-#### g:iawriter_center_cursor (experimental)
-This is an experimental feature. If enabled, `vim-iawriter` shall try to keep the cursor in the vertical center of the screen. To turn it on -
+#### iawriter_center_cursor
+This is an **experimental feature**. If enabled, `vim-iawriter` shall try to keep the cursor in the vertical center of the screen. To turn it on -
 ```vim
 let g:iawriter_center_cursor = 1
 ```
