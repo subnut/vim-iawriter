@@ -14,30 +14,52 @@ In case you have never installed plugins before, I recommend you to check out [v
 Or, you could also map something to `call vim_iawriter#toggle()`
 
 ## Configuration
-`vim-iawriter` does not touch the configurations defined individually for the abovementioned three plugins. If they are defined, vim-iawriter shall respect them.
-In addition to that, vim-iawriter provides a few configuration options -
-* `let g:iawriter_center_cursor`
-* `let g:iawriter_change_cursorline`
-* `let g:iawriter_change_underline`
+`vim-iawriter` does not touch the configurations defined individually for the abovementioned three plugins. If they are defined, vim-iawriter shall respect them
+In addition, vim-iawriter provides a few configuration options -
+* `g:iawriter_change_cursorline`
+* `g:iawriter_change_underline`
+* `g:iawriter_show_signcolumn`
+* `g:iawriter_center_cursor`
 
 #### g:iawriter_change_cursorline
 `vim-iawriter` turns off cursorline (if enabled) by default. To keep it on -
-```zsh
+```vim
 let g:iawriter_change_cursorline = 0
 ```
 
 #### g:iawriter_change_underline
 `vim-iawriter` turns off the underlining of the cursorline (if enabled) by default. To keep it on -
-```zsh
+```vim
 let g:iawriter_change_underline = 0
+```
+
+#### g:iawriter_show_signcolumn
+`vim-iawriter` hides the signcolumn by default. To keep it -
+```vim
+let g:iawriter_show_signcolumn = 1
 ```
 
 #### g:iawriter_center_cursor (experimental)
 This is an experimental feature. If enabled, `vim-iawriter` shall try to keep the cursor in the vertical center of the screen. To turn it on -
-```zsh
+```vim
 let g:iawriter_center_cursor = 1
 ```
 
+## Overrides
+`vim-airline` provides some overrides. Useful if you use both Iawriter and Goyo/Limelight. It overrides the defaults set in .vimrc
+| Configuration Option | Overrides |
+| ---------------------| --------- |
+| `g:iawriter_goyo_width`| [`g:goyo_width`][1] |
+| `g:iawriter_goyo_height`| [`g:goyo_height`][2] |
+| `g:iawriter_goyo_linenr`| [`g:goyo_linenr`][3] |
+| `g:iawriter_limelight_coefficient`| [`g:limelight_coefficient`][4] |
+| `g:iawriter_limelight_paragraph_span`| [`g:limelight_paragraph_span`][5] |
+
+  [1]: https://github.com/junegunn/goyo.vim#configuration
+  [2]: https://github.com/junegunn/goyo.vim#configuration
+  [3]: https://github.com/junegunn/goyo.vim#configuration
+  [4]: https://github.com/junegunn/limelight.vim#options
+  [5]: https://github.com/junegunn/limelight.vim#options
 
 ## Extras
 Screenshots: [here](https://github.com/subnut/vim-iawriter/issues/2)

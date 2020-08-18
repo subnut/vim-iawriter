@@ -4,11 +4,50 @@ endif
 let g:loaded_iawriter_plugin = 1
 let s:vim_iawriter_enabled = 0
 fun! vim_iawriter#check_configs()
+	" Non-config, basic checks n' saves
+	" ---------------------------------
 	let s:saved_colorscheme = 'default'
 	if exists('g:colors_name')
 		let s:saved_colorscheme = g:colors_name
 	endif
 	let s:saved_scrolloff = &scrolloff
+	let s:saved_signcolumn= &signcolumn
+
+	" Overrides
+	" ---------
+	if exists('g:iawriter_goyo_width')
+		if exists('g:goyo_width')
+			let s:saved_goyo_width = g:goyo_width
+		endif
+		let g:goyo_width = g:iawriter_goyo_width
+	endif
+	if exists('g:iawriter_goyo_height')
+		if exists('g:goyo_height')
+			let s:saved_goyo_height = g:goyo_height
+		endif
+		let g:goyo_height = g:iawriter_goyo_height
+	endif
+	if exists('g:iawriter_goyo_linenr')
+		if exists('g:goyo_linenr')
+			let s:saved_goyo_linenr = g:goyo_linenr
+		endif
+		let g:goyo_linenr = g:iawriter_goyo_linenr
+	endif
+	if exists('g:iawriter_limelight_coefficient')
+		if exists('g:limelight_coefficient')
+			let s:saved_limelight_coefficient = g:limelight_coefficient
+		endif
+		let g:limelight_coefficient = g:iawriter_limelight_coefficient
+	endif
+	if exists('g:iawriter_limelight_paragraph_span')
+		if exists('g:limelight_paragraph_span')
+			let s:saved_limelight_paragraph_span = g:limelight_paragraph_span
+		endif
+		let g:limelight_paragraph_span = g:iawriter_limelight_paragraph_span
+	endif
+
+	" Default config
+	" -----------------------------
 	if !exists('g:goyo_width')
 		let g:goyo_width = '70%'
 	endif
@@ -27,6 +66,9 @@ fun! vim_iawriter#check_configs()
 	endif
 	if !exists('g:iawriter_center_cursor')
 		let g:iawriter_center_cursor = 0
+	endif
+	if !exists('g:iawriter_show_signcolumn')
+		let g:iawriter_show_signcolumn = 0
 	endif
 endfun
 
@@ -64,6 +106,9 @@ fun! vim_iawriter#post_enter()
 	if g:iawriter_center_cursor
 		set scrolloff=9999
 	endif
+	if !g:iawriter_show_signcolumn
+		set signcolumn=no
+	endif
 	augroup iawriter_silent_cmdline
 		au!
 		autocmd CmdlineLeave : echo ''
@@ -77,11 +122,32 @@ fun! vim_iawriter#leave()
 	Limelight!
 	execute('colo ' . s:saved_colorscheme)
 	execute('set scrolloff=' . s:saved_scrolloff)
+	execute('set signcolumn=' . s:saved_signcolumn)
 	augroup iawriter_silent_cmdline
 		au!
 	augroup end
 	if s:airline_exists
 		set eventignore-=FocusGained
+	endif
+	silent! unlet g:goyo_width
+	if exists('s:saved_goyo_width')
+		let g:goyo_width = s:saved_goyo_width
+	endif
+	silent! unlet g:goyo_height
+	if exists('s:saved_goyo_height')
+		let g:goyo_height = s:saved_goyo_height
+	endif
+	silent! unlet g:goyo_linenr
+	if exists('s:saved_goyo_linenr')
+		let g:goyo_linenr = s:saved_goyo_linenr
+	endif
+	silent! unlet g:limelight_coefiicient
+	if exists('s:saved_limelight_coefiicient')
+		let g:limelight_coefiicient = s:saved_limelight_coefiicient
+	endif
+	silent! unlet g:limelight_paragraph_span
+	if exists('s:saved_limelight_paragraph_span')
+		let g:limelight_paragraph_span = s:saved_limelight_paragraph_span
 	endif
 endfun
 
