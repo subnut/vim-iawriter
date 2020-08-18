@@ -36,10 +36,7 @@ fun! vim_iawriter#pre_enter()
 	endif
 	let s:airline_exists = 0
 	if exists('#airline') && &statusline =~ 'airline'
-		" For some reason, airline needs THREE toggles to turn completely off
-		AirlineToggle
-		AirlineToggle
-		AirlineToggle
+		set eventignore+=FocusGained
 		let s:airline_exists = 1
 	endif
 	augroup iawriter_enter
@@ -84,8 +81,7 @@ fun! vim_iawriter#leave()
 		au!
 	augroup end
 	if s:airline_exists
-		AirlineToggle
-		AirlineRefresh
+		set eventignore-=FocusGained
 	endif
 endfun
 
