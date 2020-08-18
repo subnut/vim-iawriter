@@ -35,7 +35,7 @@ fun! vim_iawriter#pre_enter()
 		Goyo!
 	endif
 	let s:airline_exists = 0
-	if exists('#airline') && &statusline =~ 'airline'
+	if exists('#airline') && &statusline =~? 'airline'	" ? = case-insensitive	# = case-sensitive
 		set eventignore+=FocusGained
 		let s:airline_exists = 1
 	endif
