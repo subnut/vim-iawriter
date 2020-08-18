@@ -141,9 +141,9 @@ fun! vim_iawriter#leave()
 	if exists('s:saved_goyo_linenr')
 		let g:goyo_linenr = s:saved_goyo_linenr
 	endif
-	silent! unlet g:limelight_coefiicient
-	if exists('s:saved_limelight_coefiicient')
-		let g:limelight_coefiicient = s:saved_limelight_coefiicient
+	silent! unlet g:limelight_coefficient
+	if exists('s:saved_limelight_coefficient')
+		let g:limelight_coefficient = s:saved_limelight_coefficient
 	endif
 	silent! unlet g:limelight_paragraph_span
 	if exists('s:saved_limelight_paragraph_span')
