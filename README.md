@@ -28,7 +28,7 @@ In addition, vim-iawriter provides a few configuration options -
   [1.4]: #iawriter_show_signcolumn
   [1.5]: #iawriter_center_cursor
 
-#### iawriter_change_cursorline
+#### iawriter_force_defaults
 This option shall **override ALL other options** <br/>
 It enforces the defaults that ship with `vim-iAwriter`
 
