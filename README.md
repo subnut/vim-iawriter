@@ -119,3 +119,6 @@ For the _preview_ feature, I personally use [markdown-preview.nvim](https://gith
 
 See `plugin/vim_iawriter.vim` for more information on those functions
 
+## Screenshots
+![dark](pictures/dark.png 'dark')
+![light](pictures/light.png 'light')
