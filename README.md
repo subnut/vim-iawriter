@@ -73,7 +73,7 @@ let g:iawriter_center_cursor = 1
   [2.5]: https://github.com/junegunn/limelight.vim#options
 
 ## Extras
-Screenshots: [here](https://github.com/subnut/vim-iawriter/issues/2)
+Screenshots: [here](#screenshots)
 
 For the _preview_ feature, I personally use [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
 
