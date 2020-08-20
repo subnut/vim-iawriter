@@ -100,6 +100,7 @@ For the _preview_ feature, I personally use [markdown-preview.nvim](https://gith
 
 ##### `vim_iawriter#toggle()`
  - Checks if vim-iawriter already running. If yes, closes (by closing Goyo). Else starts.
+
 ##### `vim_iawriter#pre_enter()`
  - Closes Goyo (not vim-iawriter) if running
  - Checks if Airline installed & enabled
@@ -107,11 +108,13 @@ For the _preview_ feature, I personally use [markdown-preview.nvim](https://gith
  - Loads configs
  - Changes colorscheme
  - Starts Goyo
+
 ##### `vim_iawriter#post_enter()`
  - Runs after Goyo starts
  - Enables Limelight
  - Sets up autocmds to call `vim_iawriter#leave()` on closing Goyo
  - Applies configs
+
 ##### `vim_iawriter#leave()`
  - Runs when Goyo closes
  - Restores original configs
