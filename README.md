@@ -58,6 +58,7 @@ let g:iawriter_center_cursor = 1
 
 ## Overrides
 `vim-iawriter` provides some overrides. Useful if you use both Iawriter and Goyo/Limelight. It overrides the defaults set in .vimrc
+
 | Configuration Option | Overrides |
 | -------------------- | --------- |
 | `g:iawriter_goyo_width`| [`g:goyo_width`][2.1] |
