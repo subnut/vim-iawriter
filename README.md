@@ -1,11 +1,12 @@
-# vim-iawriter [![Github repo link](https://img.shields.io/badge/view%20on%20github-black?style=for-the-badge&logo=github)](https://github.com/subnut/ncm2-github-emoji "Github repo link")
+# vim-iawriter [![Github repo link](https://img.shields.io/badge/view%20on%20github-black?style=for-the-badge&logo=github)](https://github.com/subnut/vim-iawriter "Github repo link")
 This is a minimal plugin that aims to provide an experience similar to iAwriter's Focus mode. It acts as a wrapper around three other plugins -
 * [goyo.vim](https://github.com/junegunn/goyo.vim)
 * [limelight](https://github.com/junegunn/limelight.vim)
 * [vim-colors-pencil](https://github.com/reedes/vim-colors-pencil)
 
 ## Installation
-Install the plugins mentioned above, and then install this plugin any way you like :smile: <br/>
+Install the plugins mentioned above, and then install this plugin any way you like :smile:
+<br/>
 In case you have never installed plugins before, I recommend you to check out [vim-plug](https://github.com/junegunn/vim-plug)
 
 ## Usage
