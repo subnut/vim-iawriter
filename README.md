@@ -5,8 +5,7 @@ This is a minimal plugin that aims to provide an experience similar to iAwriter'
 * [vim-colors-pencil](https://github.com/reedes/vim-colors-pencil)
 
 ## Installation
-Install the plugins mentioned above, and then install this plugin any way you like :smile:
-<br/>
+Install the plugins mentioned above, and then install this plugin any way you like 😄 <br/>
 In case you have never installed plugins before, I recommend you to check out [vim-plug](https://github.com/junegunn/vim-plug)
 
 ## Usage
