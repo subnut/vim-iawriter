@@ -153,8 +153,10 @@ fun! s:leave()	" {{{1
 	augroup end
 	if s:airline_exists	"{{{2
 		set eventignore-=FocusGained
+		AirlineRefresh
 	endif
 	silent! unlet g:goyo_width
+
 	if exists('s:saved_goyo_width')	"{{{2
 		let g:goyo_width = s:saved_goyo_width
 	endif
@@ -177,7 +179,7 @@ fun! s:leave()	" {{{1
 	silent! doautocmd <nomodeline> User IawriterPostLeave
 endfun
 
-fun! vim_iawriter#toggle()	" {{{1
+fun! s:toggle()	" {{{1
 	silent! doautocmd <nomodeline> User IawriterToggleTriggered
 	if exists('#goyo') && s:vim_iawriter_enabled
 		Goyo!
@@ -188,11 +190,14 @@ fun! vim_iawriter#toggle()	" {{{1
 	silent! doautocmd <nomodeline> User IawriterToggleFinished
 endfun	" }}}
 
+fun! vim_iawriter#toggle()	" {{{1
+	call <SID>toggle()
+endfun	" }}}
 command! Iawriter call vim_iawriter#toggle()
 
-" Close vim when only window open is iAwriter
+" Close vim when only window open is iAwriter	" {{{1
 " Taken from https://github.com/junegunn/goyo.vim/wiki/Customization#ensure-q-to-quit-even-when-goyo-is-active
-function! s:iawriter_autoleave_enter()	" {{{1
+function! s:iawriter_autoleave_enter()	" {{{2
 	let b:quitting = 0
 	let b:quitting_bang = 0
 	augroup iawriter_only_window
@@ -202,7 +207,7 @@ function! s:iawriter_autoleave_enter()	" {{{1
 	cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
 
-function! s:iawriter_autoleave_leave()	" {{{1
+function! s:iawriter_autoleave_leave()	" {{{2
 	" Quit Vim if this is the only remaining buffer
 	if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
 		if b:quitting_bang
@@ -212,15 +217,15 @@ function! s:iawriter_autoleave_leave()	" {{{1
 		endif
 	endif
 endfunction	" }}}
-
-" Toggling colorschemes messes up syntax (vim issue)
+	" }}}
+" Toggling colorschemes messes up syntax (vim issue)	" {{{1
 " See: https://github.com/vim/vim/issues/4405
 " Workaround: https://github.com/altercation/solarized/issues/102#issuecomment-275269574
-if !exists('s:known_colorscheme_links')	" {{{1
+if !exists('s:known_colorscheme_links')	" {{{2
   let s:known_colorscheme_links = {}
 endif
 
-function! s:find_colorscheme_links() " {{{1
+function! s:find_colorscheme_links() " {{{2
   " find and remember links between highlighting groups.
   redir => listing
   try
@@ -240,7 +245,7 @@ function! s:find_colorscheme_links() " {{{1
   endfor
 endfunction
 
-function! s:restore_colorscheme_links() " {{{1
+function! s:restore_colorscheme_links() " {{{2
   " restore broken links between highlighting groups.
   redir => listing
   try
@@ -264,10 +269,11 @@ function! s:restore_colorscheme_links() " {{{1
   endfor
 endfunction
 
-function! s:set_colorscheme(colo_name)	" {{{1
+function! s:set_colorscheme(colo_name)	" {{{2
   call <SID>find_colorscheme_links()
   exec 'colorscheme ' a:colo_name
   call <SID>restore_colorscheme_links()
 endfunction	" }}}
+" }}}
 
 " vim: fdm=marker ts=4 noet sts=0

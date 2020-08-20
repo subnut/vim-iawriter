@@ -11,7 +11,7 @@ In case you have never installed plugins before, I recommend you to check out [v
 ## Usage
 `:Iawriter`
 
-Or, you could also map something to `call vim_iawriter#toggle()`
+Or, you could also map something to `call s:toggle()`
 
 ## Configuration
 `vim-iawriter` does not touch the configurations defined individually for the abovementioned three plugins. If they are defined, vim-iawriter shall respect them
@@ -99,41 +99,43 @@ For the _preview_ feature, I personally use [markdown-preview.nvim](https://gith
 
 | Autocommand | When |
 | ----------- | ---- |
-| `IawriterToggleTriggered` | `vim_iawriter#toggle()` Enter
-| `IawriterToggleFinished` | `vim_iawriter#toggle()` Exit
-| `IawriterPrePreEnter` | `vim_iawriter#pre_enter()` Enter
-| `IawriterPostPreEnter` | `vim_iawriter#pre_enter()` Exit
-| `IawriterPrePostEnter` | `vim_iawriter#post_enter()` Enter
-| `IawriterPostPostEnter` | `vim_iawriter#post_enter()` Exit
-| `IawriterPreLeave` | `vim_iawriter#leave()` Enter
-| `IawriterPostLeave` | `vim_iawriter#leave()` Exit
+| `IawriterToggleTriggered` | `s:toggle()` enter
+| `IawriterToggleFinished` | `s:toggle()` exit
+| `IawriterPrePreEnter` | `s:pre_enter()` enter
+| `IawriterPostPreEnter` | `s:pre_enter()` exit
+| `IawriterPrePostEnter` | `s:post_enter()` enter
+| `IawriterPostPostEnter` | `s:post_enter()` exit
+| `IawriterPreLeave` | `s:leave()` enter
+| `IawriterPostLeave` | `s:leave()` exit
 
 <br/>
 
-##### `vim_iawriter#toggle()`
- - Checks if vim-iawriter already running. If yes, closes (by closing Goyo). Else starts.
+##### `s:toggle()`
+ - Checks if vim-iawriter is already running. If yes, closes it (by closing Goyo). Else starts it.
 
-##### `vim_iawriter#pre_enter()`
+##### `s:pre_enter()`
  - Closes Goyo (not vim-iawriter) if running
- - Checks if Airline installed & enabled
- - Sets up autocmds to call `vim_iawriter#post_enter()` on entering Goyo
+ - Checks if [vim-airline][3] is installed & enabled
+ - Sets up autocmds to call `s:post_enter()` on entering Goyo
  - Loads configs
  - Changes colorscheme
  - Starts Goyo
 
-##### `vim_iawriter#post_enter()`
+     [3]: https://github.com/vim-airline/vim-airline
+
+##### `s:post_enter()`
  - Runs after Goyo starts
  - Enables Limelight
- - Sets up autocmds to call `vim_iawriter#leave()` on closing Goyo
+ - Sets up autocmds to call `s:leave()` on closing Goyo
  - Applies configs
 
-##### `vim_iawriter#leave()`
+##### `s:leave()`
  - Runs when Goyo closes
  - Restores original configs
 
-<br/>
+See `plugin/vim_iawriter.vim` for more information on these functions
 
-See `plugin/vim_iawriter.vim` for more information on those functions
+<br/>
 
 ## Screenshots
 ![dark](pictures/dark.png 'dark')
