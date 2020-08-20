@@ -32,6 +32,18 @@ In addition, vim-iawriter provides a few configuration options -
 This option shall **override ALL other options** <br/>
 It enforces the defaults that ship with `vim-iAwriter`
 
+i.e. `let g:iawriter_force_defaults = 1` implies -
+```vim
+let g:goyo_width = '70%'
+let g:goyo_height = '85%'
+let g:limelight_paragraph_span = 0
+let g:limelight_default_coefficient = 0.7
+let g:iawriter_change_underline = 1
+let g:iawriter_change_cursorline = 1
+let g:iawriter_center_cursor = 0
+let g:iawriter_show_signcolumn = 0
+```
+
 #### iawriter_change_cursorline
 `vim-iawriter` turns off cursorline (if enabled) by default. To keep it on -
 ```vim
