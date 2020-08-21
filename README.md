@@ -11,7 +11,7 @@ In case you have never installed plugins before, I recommend you to check out [v
 ## Usage
 `:Iawriter`
 
-Or, you could also map something to `call s:toggle()`
+Or, you could also map something to `call vim_iawriter#toggle()`
 
 ## Configuration
 `vim-iawriter` does not touch the configurations defined individually for the abovementioned three plugins. If they are defined, vim-iawriter shall respect them
