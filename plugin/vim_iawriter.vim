@@ -9,11 +9,14 @@ fun! s:check_configs()	" {{{1
 	" Non-config, basic checks n' saves
 	" ---------------------------------
 	let s:saved_colorscheme = 'default'
-	if exists('g:colors_name')
+	if exists('g:colors_name')	" {{{2
 		let s:saved_colorscheme = g:colors_name
-	endif
+	endif	" }}}
 	let s:saved_scrolloff = &scrolloff
 	let s:saved_signcolumn= &signcolumn
+	if exists('g:airline_theme')	" {{{2
+		let s:saved_airline_theme = g:airline_theme
+	endif	" }}}
 
 	" Overrides
 	" ---------
@@ -154,9 +157,14 @@ fun! s:leave()	" {{{1
 	if s:airline_exists	"{{{2
 		set eventignore-=FocusGained
 		AirlineRefresh
-	endif
+	endif	" }}}
 	silent! unlet g:goyo_width
 
+	" Restore configs
+	" ---------------
+	if exists('s:saved_airline_theme')	" {{{2
+		let g:airline_theme = s:saved_airline_theme
+	endif
 	if exists('s:saved_goyo_width')	"{{{2
 		let g:goyo_width = s:saved_goyo_width
 	endif
@@ -175,6 +183,10 @@ fun! s:leave()	" {{{1
 	silent! unlet g:limelight_paragraph_span
 	if exists('s:saved_limelight_paragraph_span')	"{{{2
 		let g:limelight_paragraph_span = s:saved_limelight_paragraph_span
+	endif	" }}}
+
+	if s:airline_exists		" Refresh airline one last time	{{{2
+		AirlineRefresh
 	endif	" }}}
 	silent! doautocmd <nomodeline> User IawriterPostLeave
 endfun
