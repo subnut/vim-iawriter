@@ -1,4 +1,7 @@
-# vim-iawriter [![Github repo link](https://img.shields.io/badge/view%20on%20github-black?style=for-the-badge&logo=github)](https://github.com/subnut/vim-iawriter "Github repo link")
+# vim-iawriter [![Github repo link](https://img.shields.io/badge/view%20on%20github-black?style=for-the-badge&logo=github)](https://github.com/subnut/vim-iawriter "Github repo link") [![Screenshots](https://img.shields.io/badge/Screenshots-blue?style=for-the-badge)](#screenshots "Screenshots")
+
+
+
 This is a minimal plugin that aims to provide an experience similar to iAwriter's Focus mode. It acts as a wrapper around three other plugins -
 * [goyo.vim](https://github.com/junegunn/goyo.vim)
 * [limelight](https://github.com/junegunn/limelight.vim)
