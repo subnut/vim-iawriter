@@ -2,7 +2,9 @@
 
 
 
-This is a minimal plugin that aims to provide an experience similar to iAwriter's Focus mode. It acts as a wrapper around three other plugins -
+This is a minimal plugin that aims to provide an experience similar to [iAwriter](https://ia.net/writer)'s Focus mode. Currently it can only highlight paragraphs. Sentence highlighting is a TODO.
+
+It acts as a wrapper around three other plugins -
 * [goyo.vim](https://github.com/junegunn/goyo.vim)
 * [limelight](https://github.com/junegunn/limelight.vim)
 * [vim-colors-pencil](https://github.com/reedes/vim-colors-pencil)
