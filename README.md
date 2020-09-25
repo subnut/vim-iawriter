@@ -13,6 +13,15 @@ It acts as a wrapper around three other plugins -
 Install the plugins mentioned above, and then install this plugin any way you like 😄 <br/>
 In case you have never installed plugins before, I recommend you to check out [vim-plug](https://github.com/junegunn/vim-plug)
 
+Using [vim-plug](https://github.com/junegunn/vim-plug), the configuration should be -
+
+```vim
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'reedes/vim-colors-pencil'
+Plug 'subnut/vim-iawriter'
+```
+
 ## Usage
 `:Iawriter`
 
