@@ -9,8 +9,10 @@ It acts as a wrapper around three other plugins -
 * [limelight](https://github.com/junegunn/limelight.vim)
 * [vim-colors-pencil](https://github.com/reedes/vim-colors-pencil)
 
+For optimal experience, it is recommended to use a GUI or a terminal that supports 24-bit color
+
 ## Installation
-Install the plugins mentioned above, and then install this plugin any way you like 😄 <br/>
+Install the plugins mentioned above, and then install this plugin any way you like :smile: <br/>
 In case you have never installed plugins before, I recommend you to check out [vim-plug](https://github.com/junegunn/vim-plug)
 
 Using [vim-plug](https://github.com/junegunn/vim-plug), the configuration should be -
