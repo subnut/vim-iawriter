@@ -38,11 +38,11 @@ fun! s:check_configs()	" {{{1
 		endif
 		let g:goyo_linenr = g:iawriter_goyo_linenr
 	endif
-	if exists('g:iawriter_limelight_coefficient')	"{{{2
-		if exists('g:limelight_coefficient')
-			let s:saved_limelight_coefficient = g:limelight_coefficient
+	if exists('g:iawriter_limelight_default_coefficient')	"{{{2
+		if exists('g:limelight_default_coefficient')
+			let s:saved_limelight_default_coefficient = g:limelight_default_coefficient
 		endif
-		let g:limelight_coefficient = g:iawriter_limelight_coefficient
+		let g:limelight_default_coefficient = g:iawriter_limelight_default_coefficient
 	endif
 	if exists('g:iawriter_limelight_paragraph_span')	"{{{2
 		if exists('g:limelight_paragraph_span')
@@ -176,9 +176,9 @@ fun! s:leave()	" {{{1
 	if exists('s:saved_goyo_linenr')	"{{{2
 		let g:goyo_linenr = s:saved_goyo_linenr
 	endif
-	silent! unlet g:limelight_coefficient
-	if exists('s:saved_limelight_coefficient')	"{{{2
-		let g:limelight_coefficient = s:saved_limelight_coefficient
+	silent! unlet g:limelight_default_coefficient
+	if exists('s:saved_limelight_default_coefficient')	"{{{2
+		let g:limelight_default_coefficient = s:saved_limelight_default_coefficient
 	endif
 	silent! unlet g:limelight_paragraph_span
 	if exists('s:saved_limelight_paragraph_span')	"{{{2

@@ -92,7 +92,7 @@ let g:iawriter_center_cursor = 1
 | `g:iawriter_goyo_width`| [`g:goyo_width`][2.1] |
 | `g:iawriter_goyo_height`| [`g:goyo_height`][2.2] |
 | `g:iawriter_goyo_linenr`| [`g:goyo_linenr`][2.3] |
-| `g:iawriter_limelight_coefficient`| [`g:limelight_coefficient`][2.4] |
+| `g:iawriter_limelight_default_coefficient`| [`g:limelight_default_coefficient`][2.4] |
 | `g:iawriter_limelight_paragraph_span`| [`g:limelight_paragraph_span`][2.5] |
 
   [2.1]: https://github.com/junegunn/goyo.vim#configuration
