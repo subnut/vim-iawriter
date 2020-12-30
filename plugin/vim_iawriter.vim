@@ -191,21 +191,25 @@ fun! s:leave()	" {{{1
 	silent! doautocmd <nomodeline> User IawriterPostLeave
 endfun
 
-fun! s:toggle()	" {{{1
+fun! s:toggle(dimension)	" {{{1
 	silent! doautocmd <nomodeline> User IawriterToggleTriggered
 	if exists('#goyo') && s:vim_iawriter_enabled
 		Goyo!
 	else
 		call <SID>pre_enter()
-		Goyo
+		if a:dimension is v:none
+			Goyo
+		else
+			execute 'Goyo' a:dimension
+		endif
 	endif
 	silent! doautocmd <nomodeline> User IawriterToggleFinished
 endfun	" }}}
 
-fun! vim_iawriter#toggle()	" {{{1
-	call <SID>toggle()
+fun! vim_iawriter#toggle(dimension=v:none)	" {{{1
+	call <SID>toggle(a:dimension)
 endfun	" }}}
-command! Iawriter call vim_iawriter#toggle()
+command! -nargs=? Iawriter call vim_iawriter#toggle(<f-args>)
 
 " Close vim when only window open is iAwriter	" {{{1
 " Taken from https://github.com/junegunn/goyo.vim/wiki/Customization#ensure-q-to-quit-even-when-goyo-is-active
